@@ -8,22 +8,23 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 
-export async function GET(request) {
+export async function POST(request) {
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     stream: true, //para que la respuesta sea un stream
     messages: [
       {
         role: "system",
-        content: "Comportate como si fueras mi abuela",
+        content:
+          "Comportate como si fueras un chef y responde las pregintas que envia el user",
       },
       {
         role: "user",
-        content: "Hola, como estas?",
+        content: "",
       },
     ],
     max_tokens: 500,
-    temperature: 0.7,
+    temperature: 0.5,
     top_p: 1,
     presence_penalty: 1,
     frequency_penalty: 1,
